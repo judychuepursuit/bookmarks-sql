@@ -8,7 +8,7 @@ const {
   updateBookmark,
 
 } = require("../queries/bookmarks");
-// Added checkName as per end of 2nd lesson
+// Added checkName 3rd lesson
 const { checkName, checkBoolean, validateURL } = require("../validations/checkBookmarks.js");
 
 // INDEX
@@ -31,10 +31,10 @@ bookmarks.get("/:id", async (req, res) => {
     res.status(404).json({ error: "not found" });
   }
 });
-// Added checkName as per end of 2nd lesson
+
+// Added checkName 3rd lesson
 // CREATE
-// bookmarks.post("/", checkBoolean, checkName, async (req, res) => {
-  bookmarks.post("/", checkName, checkBoolean, async (req, res) => {
+bookmarks.post("/", checkName, checkBoolean, async (req, res) => {
   try {
     const bookmark = await createBookmark(req.body);
     res.json(bookmark);
@@ -56,7 +56,7 @@ bookmarks.delete("/:id", async (req, res) => {
 });
 
 // PUT/UPDATE
-// UPDATE
+
 bookmarks.put("/:id", checkName, checkBoolean, validateURL, async (req, res) => {
 // bookmarks.put("/:id", async (req, res) => {
   const { id } = req.params;
