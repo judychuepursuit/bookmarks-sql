@@ -1,5 +1,4 @@
 const express = require("express");
-
 const { getBookmark } = require("../queries/bookmarks.js");
 const reviews = express.Router({ mergeParams: true });
 const {
@@ -12,15 +11,15 @@ const {
 
 // INDEX
 reviews.get("/", async (req, res) => {
-  const { bookmarkId } = req.params;
-
-  const allReviews = await getAllReviews(bookmarkId);
-  if (allReviews[0]) {
-    res.status(200).json(allReviews);
-  } else {
-    res.status(500).json({ error: "server error" });
-  }
-});
+    const { bookmarkId } = req.params;
+  
+    try {
+      const allReviews = await getAllReviews(bookmarkId);
+      res.json(allReviews);
+    } catch (err) {
+      res.json(err);
+    }
+  });
 
 // SHOW
 reviews.get("/:id", async (req, res) => {

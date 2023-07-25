@@ -11,6 +11,9 @@ const {
 // Added checkName 3rd lesson
 const { checkName, checkBoolean, validateURL } = require("../validations/checkBookmarks.js");
 
+const reviewsController = require("./reviewsController.js");
+bookmarks.use("/:bookmarkId/reviews", reviewsController);
+
 // INDEX
 bookmarks.get("/", async (req, res) => {
   const allBookmarks = await getAllBookmarks();

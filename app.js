@@ -18,10 +18,6 @@ app.get("/", (req, res) => {
 const bookmarksController = require("./controllers/bookmarkController.js");
 app.use("/bookmarks", bookmarksController);
 
-// Reviews ROUTES
-const reviewsController = require("./controllers/reviewsController.js");
-app.use("/reviews", reviewsController);
-
 // 404 PAGE
 app.get("*", (req, res) => {
   res.status(404).send("Page not found");
